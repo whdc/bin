@@ -1,0 +1,40 @@
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.7.0"></script><textarea>
+
+You made distributions for $\log \phi_i$, for geophys observations $i \in \{N_A + 1, \ldots, N_A + N_B\}$:
+$$
+\log \phi_i \sim \mathcal{N}(\mu^{(\phi)}_i, \sigma^{(\phi)2}_i)
+$$
+I'm going to combine this with the inline equation that follows Eq. 5 in the paper, which I write with subscripts as appropriate:
+$$
+b_i = c_0 + \log(75+6.77) - \log(T_i+6.77) + (\log a) - m(\log\phi_i).
+$$
+I get:
+$$
+b_i \sim \mathcal{N}(c_0 + \log(75+6.77) - \log(T_i+6.77) + (\log a) - m\mu^{(\phi)}_i, m^2\sigma^{(\phi)2}_i).
+$$
+For geochem observations $i \in \{1, \ldots, N_A\}$, we make $b_i \sim \mathcal{N}(0, 0)$ so that $\mathbf{v} = A\mathbf{u} + \mathbf{b}$ (Eq. 6) continues to hold. We also want to be able to express the probability distribution for $\mathbf{b}$ using vector notation so we write
+$$
+\mathbf{b} \sim \mathcal{N}(\mathbf{d}, E),
+$$
+where each entry of $\mathbf{d}$ is
+$$
+d_i = \begin{cases}
+0 & i <= N_A\\
+c_0 + k_i + (\log a) - m\mu^{(\phi)}_i & \textrm{otherwise},\\
+\end{cases}
+$$
+and each diagonal entry of diagonal matrix $E$ is
+$$
+e_{ii} = \begin{cases}
+0 & i <= N_A\\
+m^2\sigma^{(\phi)2}_i & \textrm{otherwise}.\\
+\end{cases}
+$$
+Since $\mathbf{b}$ is now a random variable, we should rewrite Eq. 10 as
+$$
+\mathbf{v}\mid\mathbf{b} \sim \mathcal{N}(\mathbf{b}, A^T(\alpha F^TF + \Sigma)A).
+$$
+Integrating out $\mathbf{b}$ we get
+$$
+\mathbf{v} \sim \mathcal{N}(\mathbf{d}, E + A^T(\alpha F^TF + \Sigma)A).
+$$
